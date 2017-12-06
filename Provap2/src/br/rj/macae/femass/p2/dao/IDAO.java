@@ -10,7 +10,7 @@ import java.util.List;
 
 /**
  *
- * @author anamm
+ * @author ymoraes
  */
 public interface IDAO {
     public void cadastrar(Object o) throws SQLException;
