@@ -14,7 +14,7 @@ import javax.persistence.Persistence;
 
 public class FabricaConexao {
     public static EntityManagerFactory getConexao(){
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("provap2PU");
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("provaPU");
         return emf;
 
     }

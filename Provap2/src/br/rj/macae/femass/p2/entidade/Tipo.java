@@ -16,23 +16,20 @@ import javax.persistence.Id;
  * @author YMoraes
  */
 @Entity
-public class Categoria implements Serializable {
+public class Tipo implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
     private String nome;
     private String descricao;
-
-    public String getNome() {
-        return nome;
+    
+    
+    public Tipo() {
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
+    
     public String getDescricao() {
         return descricao;
     }
@@ -40,14 +37,24 @@ public class Categoria implements Serializable {
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
+
     
     
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
     
-    public Long getId() {
+    
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -61,10 +68,10 @@ public class Categoria implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Categoria)) {
+        if (!(object instanceof Tipo)) {
             return false;
         }
-        Categoria other = (Categoria) object;
+        Tipo other = (Tipo) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }

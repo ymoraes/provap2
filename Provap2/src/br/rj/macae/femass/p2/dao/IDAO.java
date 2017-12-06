@@ -15,7 +15,6 @@ import java.util.List;
 public interface IDAO {
     public void cadastrar(Object o) throws SQLException;
     public void alterar(Object o) throws SQLException;
-    public void excluir(Object o) throws SQLException;
     public List listarTodos() throws SQLException;
     public Object listarPorId(int id) throws SQLException;
 }

@@ -1,49 +1,44 @@
-
-
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package br.rj.macae.femass.p2.dao;
 
 
-import br.rj.macae.femass.p2.dao.FabricaConexao;
-import br.rj.macae.femass.p2.dao.IDAO;
-import br.rj.macae.femass.p2.entidade.Categoria;
-
-import java.io.IOException;
-
+import br.rj.macae.femass.p2.entidade.Tipo;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import javax.persistence.TypedQuery;
 
 /**
  *
- * @author YMoraes
+ * @author anamm
  */
-public class CategoriaDAO implements IDAO {
-    
+public class TipoDAO implements IDAO{
+
     @Override
     public void cadastrar(Object o) throws SQLException {
         
         
-            Categoria c = (Categoria)o;
+            Tipo c = (Tipo)o;
             EntityManager em = FabricaConexao.getConexao().createEntityManager();
             em.getTransaction().begin();
             em.persist(c);
             em.getTransaction().commit();
             em.close();
             
-//            String sql = "insert into categoria (nome,descricao) "
+//            String sql = "insert into cliente (nome,descricao) "
 //                    + "values (?,?)";
 //            PreparedStatement stmt = conn.prepareStatement(sql);
 //            // preenche os valores         
-//            stmt.setString(1, categoria.getNome());
-//            stmt.setString(2, categoria.getDescricao());
+//            stmt.setString(1, cliente.getNome());
+//            stmt.setString(2, cliente.getDescricao());
 //            
 //            
 //            stmt.executeUpdate();
@@ -54,50 +49,41 @@ public class CategoriaDAO implements IDAO {
 
      @Override
     public void alterar(Object o) throws SQLException {
-        Categoria categoria = (Categoria) o;               
+        Tipo cliente = (Tipo) o;               
         EntityManager em = FabricaConexao.getConexao().createEntityManager();
         em.getTransaction().begin();
-        em.merge(categoria);
+        em.merge(cliente);
         em.getTransaction().commit();
         em.close();
       
            
     }
 
-     @Override
-    public void excluir(Object o) throws SQLException {
-        Categoria categoria = (Categoria) o;               
-        EntityManager em = FabricaConexao.getConexao().createEntityManager();
-        em.getTransaction().begin();
-        categoria = em.merge(categoria);
-        em.remove(categoria);
-        em.getTransaction().commit();
-        em.close();
-        
-    }
+
 
      @Override
     public List listarTodos() throws SQLException {
         
         try {
             EntityManager em = FabricaConexao.getConexao().createEntityManager();
-            TypedQuery<Categoria> consulta = em.createQuery("SELECT c FROM Categoria c",Categoria.class);
-            List<Categoria> categorias = consulta.getResultList();
+            TypedQuery<Tipo> consulta = em.createQuery("SELECT c FROM Tipo c",Tipo.class);
+            List<Tipo> clientes = consulta.getResultList();
             em.close();
-            return categorias;
+            return clientes;
                         
         } catch (Exception e) {
-            throw new SQLException("Eroo ao tentar listar a categoria. \n" + e.getMessage());
+            throw new SQLException("Eroo ao tentar listar a cliente. \n" + e.getMessage());
         }
         
     }
 
      @Override
     public Object listarPorId(int id) throws SQLException {
-        Connection conn = null;
-        return null;
+        EntityManager em = FabricaConexao.getConexao().createEntityManager();
+        Tipo r = em.find(Tipo.class, new Integer(id));        
+        em.close();
+        return r;
 
     }
-   
     
 }
